@@ -1,0 +1,60 @@
+extends layouts/base-layout
+block append content
+  //- 第一个页面用于表单提交
+  div(data-role='page')#one
+    //- 年龄面板
+    #age-panel(data-role='panel',data-position='right')
+      h2 年龄
+        ul(data-role='listview')
+          each age in [18,19,20,21,22,23,24,25,26,27,28,29,30]
+            li(onclick='selectAge(#{age})', data-rel="close")
+              a  #{age} 岁
+    .ui-content(role='main') 
+      form(method='post')#userForm
+        .ui-field-contain
+          label(for='name') 姓名
+          input(type='text',name='name')#name
+        .ui-field-contain
+          label(for='phone') 手机号
+          input(type='tel',name='phone')#phone
+         .ui-field-contain
+          label(for='school') 学校
+          input(name='school',type='text',value='文华学院')#school
+        .ui-field-contain
+          label(for='gender') 性别
+          select(name='gender', data-native-menu='false')#gender
+            option(value='男') 男
+            option(value='女') 女
+        .ui-field-contain
+          label(for='age') 年龄
+          a(href='#age-panel') 
+            input(name='age',type='number',disabled='disabled',value='18')#age
+    div(data-role='footer',data-position='fixed')
+        h1(onclick='goTwo()') 下一步
+  div(data-role='page')#two
+    .ui-content(role='main')
+      .ui-grid-c
+        .ui-block-a: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+        .ui-block-b: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+        .ui-block-c: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+        .ui-block-d: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+    div(data-role='footer', data-position='fixed')
+        .ui-grid-c
+          .ui-block-a: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+          .ui-block-b: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+          .ui-block-c: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+          .ui-block-d: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
+        //-
+    
+
+
+block append script
+  script.
+    function selectAge(age){
+        $('#age').val(age)
+    }
+    function goTwo(){
+      location.hash='two'
+    }
+    
+ 
