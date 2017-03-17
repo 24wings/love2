@@ -1,4 +1,5 @@
 extends layouts/base-layout
+
 block append content
   //- 第一个页面用于表单提交
   div(data-role='page')#one
@@ -33,19 +34,26 @@ block append content
         h1(onclick='goTwo()') 下一步
   div(data-role='page')#two
     .ui-content(role='main')
-      .ui-grid-c
-        .ui-block-a: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-        .ui-block-b: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-        .ui-block-c: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-        .ui-block-d: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-    div(data-role='footer', data-position='fixed')
-        .ui-grid-c
-          .ui-block-a: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-          .ui-block-b: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-          .ui-block-c: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-          .ui-block-d: a(href='#').ui-shadow.ui-btn.ui-corner-all.ui-mini  锚点
-        //-
-    
+      each tag in tags
+        a(href='##{tag.pageId}',data-transition='flip').ui-field-contain
+          label(for='sign-values') #{tag.title}
+          input(type='text',name='#{tag.inputId}',disabled='disabled',id="#{tag.inputId}")
+  each tag in tags
+    div(data-role='page',id="#{tag.pageId}").tag
+        div(data-role='header')
+          div(data-role='navbar')
+            ul
+              li: button(data-icon='gear',onclick='goBack()') 取消
+              li: button(data-icon='star',onclick='setTags("#{tag.pageId}","#{tag.inputId}"),goBack();') 确定
+        div(data-role='main')
+          .ui-grid-c.selected 
+        div(data-role='footer',data-position='fixed')        
+          div(data-role='navbar')
+            .ui-grid-c
+                each option in tag.options 
+                  .ui-block-d(onclick='addTag("#{option}","#{tag.pageId}")'): a.ui-shadow.ui-btn.ui-corner-all #{option}
+            
+  
 
 
 block append script
@@ -55,6 +63,49 @@ block append script
     }
     function goTwo(){
       location.hash='two'
+    }
+    function goBack(){
+        history.go(-1);
+    }
+    /**
+    * @param 
+    */
+    function addTag(value,pageId) {
+      console.log(value,pageId);
+      var $page =$('#'+pageId);
+        var selectedTagLength= $page.find('.selected').size();
+       
+        console.log($page);
+        var domClass;
+        
+        switch(selectedTagLength%4){
+          case 0:
+          domClass='ui-block-b';
+          break;
+          case 1:
+          domClass='ui-block-c';
+          break;
+          case 1:
+          domClass='ui-block-d';
+          break;
+          default:
+          domClass='ui-block-a';
+          break;
+        }
+       var $dom=$('<div class="item '+ domClass+'" onclick="$(this).remove()"><a href="#" class="ui-shadow ui-icon-delete ui-btn-icon-right ui-btn ui-corner-all ui-mini">'+value+'</a></div>');
+            $page.find('.selected').append($dom);
+            
+    }
+    /**
+    *   @param 标签页,和输入框
+    */
+    function setTags(tagPageId,inputId){
+      var values=[];
+      $('#'+tagPageId).find('.selected .item a').toArray().forEach(function(item){
+            values.push($(item).text())
+      });
+      $('#'+inputId).val(values.join(','));
+
     }
     
  

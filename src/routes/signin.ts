@@ -4,16 +4,8 @@ var router = express.Router();
 
 
 router.get('/', (req, res, next) => {
-    if (req.session.isVisit) {
-        req.session.isVisit++
-    } else {
-        req.session.isVisit = 1
 
-    }
-
-    res.render('signin', {
-        visit: req.session.isVisit
-    });
+    res.render('signin');
     next();
 }).post('/', async (req, res, next) => {
     var { email, password } = req.body;

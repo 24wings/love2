@@ -1,15 +1,11 @@
-doctype html
-html
-  include layouts/head
-  body
-    include layouts/navbar
-    
+extends layouts/base-layout
+block append content
+  h1 hello world
 
-
-    include layouts/foot
-    script
-        | $('.active').click(function(){
-        | alert('ok')
-        | });
+block append script
+    script.
+         $('.active').click(function(){
+         alert('ok')
+         });
 
 
