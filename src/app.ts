@@ -8,11 +8,10 @@ import session = require('express-session');
 
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 var api = require('./routes/api');
-var signin = require('./routes/signin');
 var signup = require('./routes/signup');
-var admin = require('./routes/admin');
+var home = require('./routes/home');
+
 
 var app = express();
 // 按照上面的解释，设置 session 的可选参数
@@ -52,10 +51,8 @@ app.use(function (req, res, next) {
 
 app.use('/api', api);
 app.use('/', index);
-app.use('/signin', signin);
 app.use('/signup', signup);
-app.use('/users', users);
-app.use('/admin', admin);
+app.use('/home', home)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,7 +1,8 @@
 extends layouts/base-layout
 
+block prepend  content
+  form(id='user_form',action='/signup',method='POST')
 block append content
-  //- 第一个页面用于表单提交
   div(data-role='page')#one
     //- 年龄面板
     #age-panel(data-role='panel',data-position='right')
@@ -38,6 +39,10 @@ block append content
         a(href='##{tag.pageId}',data-transition='flip').ui-field-contain
           label(for='sign-values') #{tag.title}
           input(type='text',name='#{tag.inputId}',disabled='disabled',id="#{tag.inputId}")
+    div(data-role='footer',data-position='fixed')
+      div(data-role='navbar')
+        ul
+          li: button.ui-btn(type='submit',form='user_form') 提交
   each tag in tags
     div(data-role='page',id="#{tag.pageId}").tag
         div(data-role='header')
@@ -106,6 +111,9 @@ block append script
       });
       $('#'+inputId).val(values.join(','));
 
+    }
+    function signup(){
+      location.href='/home?_id='+localStorage.getItem('_id')
     }
     
  
