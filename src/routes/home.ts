@@ -22,7 +22,7 @@ router.get('/', async function (req, res, next) {
         })
 
     }
-    res.render('home');
+    // res.render('home');
 });
 
 module.exports = router;

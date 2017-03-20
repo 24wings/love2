@@ -2,7 +2,7 @@ extends layouts/base-layout
 
 block prepend  content
   form(id='user_form',action='/signup',method='POST')
-block append content
+block  content
   div(data-role='page')#one
     //- 年龄面板
     #age-panel(data-role='panel',data-position='right')
@@ -12,25 +12,24 @@ block append content
             li(onclick='selectAge(#{age})', data-rel="close")
               a  #{age} 岁
     .ui-content(role='main') 
-      form(method='post')#userForm
         .ui-field-contain
           label(for='name') 姓名
-          input(type='text',name='name')#name
+          input(type='text',name='name',form="user_form",required)#name
         .ui-field-contain
           label(for='phone') 手机号
-          input(type='tel',name='phone')#phone
+          input(type='tel',name='phone',form="user_form",required)#phone
          .ui-field-contain
           label(for='school') 学校
-          input(name='school',type='text',value='文华学院')#school
+          input(name='school',type='text',value='文华学院',form="user_form",required)#school
         .ui-field-contain
           label(for='gender') 性别
-          select(name='gender', data-native-menu='false')#gender
+          select(name='gender', data-native-menu='false',form="user_form",required)#gender
             option(value='男') 男
             option(value='女') 女
         .ui-field-contain
           label(for='age') 年龄
           a(href='#age-panel') 
-            input(name='age',type='number',disabled='disabled',value='18')#age
+            input(name='age',type='number',value=18,form="user_form",onfocus="$(this).blur()")#age
     div(data-role='footer',data-position='fixed')
         h1(onclick='goTwo()') 下一步
   div(data-role='page')#two
@@ -38,11 +37,11 @@ block append content
       each tag in tags
         a(href='##{tag.pageId}',data-transition='flip').ui-field-contain
           label(for='sign-values') #{tag.title}
-          input(type='text',name='#{tag.inputId}',disabled='disabled',id="#{tag.inputId}")
+          input(type='text',name='#{tag.inputId}',id="#{tag.inputId}",form="user_form",required)
     div(data-role='footer',data-position='fixed')
       div(data-role='navbar')
         ul
-          li: button.ui-btn(type='submit',form='user_form') 提交
+          li(onclick="signup()"): button.ui-btn 提交
   each tag in tags
     div(data-role='page',id="#{tag.pageId}").tag
         div(data-role='header')
@@ -64,10 +63,16 @@ block append content
 block append script
   script.
     function selectAge(age){
-        $('#age').val(age)
+        $('#age').val(+age)
     }
     function goTwo(){
-      location.hash='two'
+      if($('#name').val() && /^1[3-9]\d{9}$/.test($('#phone').val()) && $('#gender').val() && $('#school').val() &&$('#gender').val())
+      {
+        location.hash='two';
+       } else {
+         alert('请填写完表单')
+       }
+      
     }
     function goBack(){
         history.go(-1);
@@ -113,7 +118,24 @@ block append script
 
     }
     function signup(){
-      location.href='/home?_id='+localStorage.getItem('_id')
+          console.log('hello')
+            // bind 'myForm' and provide a simple callback function  
+            $('#user_form').ajaxSubmit({
+              type:'POST',
+              url:'/signup',
+              success:function(rtn){
+                localStorage.setItem('_id',rtn.data);
+                goHome();
+              }
+            })
+      
     }
-    
+     
+     function goHome(){
+        var _id =localStorage.getItem('_id')
+        if(_id){
+          location.href='/home?_id='+_id;
+        }
+     }
+     goHome()
  

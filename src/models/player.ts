@@ -8,7 +8,10 @@ var playerSchema = new mongoose.Schema({
     gender: { type: String, default: '男' },
     phone: { type: String },
     password: { type: String },
-    tags: { type: [{ tagName: String, result: [String], options: [String] }] },
+    tagSignValues: { type: String },
+    tagLikeValues: { type: String },
+    tagSpecialValues: { type: String },
+    tagStateValues: { type: String },
     age: Number,
     height: Number,
 

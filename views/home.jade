@@ -33,10 +33,10 @@ block append style
             text-overflow: inherit;
             color: #8e9093;
          }
-
-block append content
+block  content
+    //- 本地存储用户的_id，以后每次登录到注册页面都会自动跳转到这个页面
     div(data-role='page')
-        div(data-role='main')
+        div(data-role='main',data-id='#{_id}')#id
             .ui-bar.ui-bar-a.ui-corner-all
                 img(src='http://teach.wanviv.com:8080/assets/images/1.png')
                 .ui-btn 匹配指数  99
@@ -57,9 +57,12 @@ block append content
             div(data-role='navbar')
                 ul
                   li: button(data-icon='gear',onclick='goBack()') 个人信息
-                  li: button(data-icon='star',onclick='setTags(""),goBack();') 退款
-           
-                
+                  li: button(data-icon='star') 退款
+ block  myScript
+    script.
+        window.onload=function(){ 
+            console.log('hello world');
+        }
                 
 
         
