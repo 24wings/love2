@@ -54,7 +54,29 @@ block  content
             .ui-grid-c
                 each option in  ['文艺青年', '普通青年', '有为青年', '2B青年','学生', 'IT民工', '自由职业者', '上班族', '潜力股','创业者', '技术宅', '小清新', '月光族', '乐活族']
                   .ui-block-d(onclick='addTag("#{option}","#个性签名")'): a.ui-shadow.ui-btn.ui-corner-all #{option}
-            
+        .ui-content(role='main')
+        a(href='#个性签名',data-transition='flip').ui-field-contain
+          label(for='sign-name-values') 个性签名
+          input(type='text',id="sign-name-values",form="user_form",required)
+    div(data-role='footer',data-position='fixed')
+      div(data-role='navbar')
+        ul
+          li(onclick="signup()"): button.ui-btn 提交
+  div(data-role='page',id="个性签名").tag
+        div(data-role='header')
+          div(data-role='navbar')
+            ul
+              li: button(data-icon='gear',onclick='goBack()') 取消
+              li: button(data-icon='star',onclick='setTags("#个性签名","#sign-name-values"),goBack();') 确定
+        div(data-role='main')
+          .ui-grid-c.selected 
+        div(data-role='footer',data-position='fixed')        
+          div(data-role='navbar')
+            .ui-grid-c
+                each option in  ['文艺青年', '普通青年', '有为青年', '2B青年','学生', 'IT民工', '自由职业者', '上班族', '潜力股','创业者', '技术宅', '小清新', '月光族', '乐活族']
+                  .ui-block-d(onclick='addTag("#{option}","#个性签名")'): a.ui-shadow.ui-btn.ui-corner-all #{option}
+        
+  
   
 
 

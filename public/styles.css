@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+    cursor: pointer;
+}
+
+.tag-panel {
+    background: lightcyan;
+    border: none;
+}
+
+.select-tag {
+    color: #000;
+    background: transparent;
+    border: none;
+}
+
+.line {
+    width: 5px;
+    background: red;
+    height: 21px;
+    display: inline-block;
+    line-height: 15px;
+    margin-bottom: -6px;
+    display: inline-block;
+}
+
+.hr {
+    width: 104%;
+    background-color: #EBEBEB;
+    height: 40px;
+    padding-right: 0;
+}
+
+.hr-lg {
+    height: 80px;
+}
+
+.block {
+    padding: 20px 0 20px 20px;
+}
+
+.task-remind {
+    background: #939393;
+    float: right;
+    margin-right: 70px;
+    color: #fff;
+    border-radius: 50px
+}

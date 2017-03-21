@@ -5,7 +5,6 @@ var router = express.Router();
 
 
 router.post('/', async (req, res, next) => {
-
     var isExisit = await playerModel.findOne({ phone: req.body.phone }).count();
     console.log(req.body);
     if (isExisit) {
@@ -26,7 +25,6 @@ router.post('/', async (req, res, next) => {
             data: newPlayer._id
         });
     }
-
 });
 
 module.exports = router;

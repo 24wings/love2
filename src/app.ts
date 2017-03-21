@@ -10,6 +10,7 @@ import session = require('express-session');
 var index = require('./routes/index');
 var api = require('./routes/api');
 var signup = require('./routes/signup');
+var player = require('./routes/player');
 var home = require('./routes/home');
 
 
@@ -49,7 +50,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/api', api);
+app.use('/player', player);
 app.use('/', index);
 app.use('/signup', signup);
 app.use('/home', home)

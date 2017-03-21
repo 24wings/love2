@@ -1,0 +1,93 @@
+<div class="scrollable">
+    <div class="scrollable-content section">
+
+        <form id="userForm" role="form">
+            <fieldset ng-if="level==1">
+                <legend>个人信息</legend>
+                <div class="form-group has-success has-feedback">
+                    <label>姓名</label>
+                    <input type="text" ng-model="user.name" class="form-control" placeholder="姓名">
+                </div>
+
+                <div class="form-group">
+                    <label>手机号码</label>
+                    <input type="number" ng-model='user.phone' class="form-control" placeholder="手机号">
+                </div>
+                <div class="form-group">
+                    <label>性别</label>
+                    <select class="form-control" ng-model='user.gender'>
+                        <option value='男'>男</option>
+                        <option value='女'>女</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>年龄</label>
+                    <input type="number" ng-model="user.age" class="form-control" placeholder="年龄">
+                </div>
+
+            </fieldset>
+
+            <fieldSet ng-if="level==2">
+
+                <div class="form-group">
+                    <uib-accordion close-others="true">
+                        <div ng-repeat="tag in user.tags ">
+                            <div uib-accordion-group class="panel-primary tag-panel" heading="我的社交名片" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                                <uib-accordion-heading>
+                                    <p>{{tag.tagName}}</p>
+                                    <div class="row">
+                                        <div class="col-xs-4" ng-repeat="value in tag.values">
+                                            <button class="btn btn-success btn-block" ng-click="deleteValue(tag,value)">{{value}} <i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                    </div>
+
+                                </uib-accordion-heading>
+                                <div class="row">
+                                    <div style="float: left; width: 25%;" ng-repeat="option in tag.options" ng-click="addTagValue(tag,option)">
+                                        <button class="btn btn-primary select-tag">{{option}} </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </uib-accordion>
+                </div>
+            </fieldset>
+            <fieldSet ng-if="level==3">
+                <div class="form-group" ng-repeat="anwser in user.anwsers">
+                    <label>{{anwser.question}}</label>
+                    <textarea class="form-control" rows="3" ng-model="anwser.value"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>年龄要求</label>
+                    <select class="form-control" ng-model='user.filterAge.value'>
+                        <option value='old' >比我大</option>
+                        <option value='small'>比我小</option>
+                        <option value='both'>都可以</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>城市要求</label>
+                    <select class="form-control" ng-model='user.filterCity.value'>
+                        <option value='sameCity'>同城恋爱</option>
+                        <option value='different'>异地恋</option>
+                        <option value="both">都可以</option>
+                    </select>
+                </div>
+            </fieldSet>
+
+            <hr>
+
+            <button class="btn btn-primary btn-block" ng-click="nextLevel()">
+      下一步
+    </button>
+
+
+
+        </form>
+    </div>
+</div>
