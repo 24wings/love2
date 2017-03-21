@@ -34,28 +34,26 @@ block  content
         h1(onclick='goTwo()') 下一步
   div(data-role='page')#two
     .ui-content(role='main')
-      each tag in tags
-        a(href='##{tag.pageId}',data-transition='flip').ui-field-contain
-          label(for='sign-values') #{tag.title}
-          input(type='text',name='#{tag.inputId}',id="#{tag.inputId}",form="user_form",required)
+        a(href='#个性签名',data-transition='flip').ui-field-contain
+          label(for='sign-name-values') 个性签名
+          input(type='text',id="sign-name-values",form="user_form",required)
     div(data-role='footer',data-position='fixed')
       div(data-role='navbar')
         ul
           li(onclick="signup()"): button.ui-btn 提交
-  each tag in tags
-    div(data-role='page',id="#{tag.pageId}").tag
+  div(data-role='page',id="个性签名").tag
         div(data-role='header')
           div(data-role='navbar')
             ul
               li: button(data-icon='gear',onclick='goBack()') 取消
-              li: button(data-icon='star',onclick='setTags("#{tag.pageId}","#{tag.inputId}"),goBack();') 确定
+              li: button(data-icon='star',onclick='setTags("#个性签名","#sign-name-values"),goBack();') 确定
         div(data-role='main')
           .ui-grid-c.selected 
         div(data-role='footer',data-position='fixed')        
           div(data-role='navbar')
             .ui-grid-c
-                each option in tag.options 
-                  .ui-block-d(onclick='addTag("#{option}","#{tag.pageId}")'): a.ui-shadow.ui-btn.ui-corner-all #{option}
+                each option in  ['文艺青年', '普通青年', '有为青年', '2B青年','学生', 'IT民工', '自由职业者', '上班族', '潜力股','创业者', '技术宅', '小清新', '月光族', '乐活族']
+                  .ui-block-d(onclick='addTag("#{option}","#个性签名")'): a.ui-shadow.ui-btn.ui-corner-all #{option}
             
   
 
@@ -82,7 +80,7 @@ block append script
     */
     function addTag(value,pageId) {
       console.log(value,pageId);
-      var $page =$('#'+pageId);
+      var $page =$(pageId);
         var selectedTagLength= $page.find('.selected').size();
        
         console.log($page);
@@ -111,24 +109,38 @@ block append script
     */
     function setTags(tagPageId,inputId){
       var values=[];
-      $('#'+tagPageId).find('.selected .item a').toArray().forEach(function(item){
-            values.push($(item).text())
+      $(tagPageId).find('.selected .item a').toArray().forEach(function(item){
+            values.push($(item).text());
       });
-      $('#'+inputId).val(values.join(','));
+      console.log(values);
+      $(inputId).val(values.join(','));
 
     }
     function signup(){
-          console.log('hello')
-            // bind 'myForm' and provide a simple callback function  
-            $('#user_form').ajaxSubmit({
-              type:'POST',
-              url:'/signup',
-              success:function(rtn){
-                localStorage.setItem('_id',rtn.data);
-                goHome();
+           console.log(   { name:$('#name').val(),
+                phone:$('#phone').val(),
+                school:$('#school').val(),
+                gender:$('#gender').val(),
+                age:$('#age').val(),
+                tags:[ {
+                    tagName:'个性签名',
+                    values:$("#sign-name-values").val()
+
+                  }]
+                });
+            return ;
+            $.ajax('/signup',{
+              method:'POST',
+              data:{
+                name:$('#name').val(),
+                phone:$('#phone').val(),
+                school:$('#school').val(),
+                gender:$('#gender').val(),
+                age:$('#age').val(),
+                tags:$('.tag').toArray()
+
               }
             })
-      
     }
      
      function goHome(){
