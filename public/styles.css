@@ -42,6 +42,10 @@
     height: 80px;
 }
 
+.hr-sm {
+    height: 20px;
+}
+
 .block {
     padding: 20px 0 20px 20px;
 }
@@ -52,4 +56,38 @@
     margin-right: 70px;
     color: #fff;
     border-radius: 50px
+}
+
+.info-list-item {
+    background-color: #FFFFFF;
+    height: 80px;
+    padding: 15px;
+}
+
+.info-list-item .avatar {
+    background: #fdafc5;
+    width: 35px;
+    height: 35px;
+    position: relative;
+    float: left;
+}
+
+.info-list-item .avatar img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+.info-list-item .link {
+    font-size: 14px;
+    color: rgb(68, 68, 68);
+    font-weight: 600;
+    line-height: 50px;
+    margin-left: 67px;
+}
+
+.space {
+    background: rgba(235, 235, 235, 1);
 }

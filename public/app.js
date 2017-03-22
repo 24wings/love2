@@ -8,6 +8,15 @@ angular.module('myApp', [
     }).when('/home', {
         templateUrl: 'pages/home.html',
         controller: 'HomeCtrl'
+    }).when('/my', {
+        templateUrl: 'pages/my.html',
+        controller: 'MyCtrl'
+    }).when('/myInfo', {
+        templateUrl: 'pages/my-info.html',
+        controller: 'MyInfoCtrl'
+    }).when('/objectInfo/:objectId', {
+        templateUrl: 'pages/object-info.html',
+        controller: 'ObjectInfoCtrl'
     })
 }).controller('IndexCtrl', function($scope, $http, $route, $location) {
     /**用户默认的数据 */

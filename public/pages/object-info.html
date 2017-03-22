@@ -1,0 +1,58 @@
+<div class="space" style="height: 60px;"></div>
+
+<h2>{{user.currentRecord.toPlayerId.name}}被选为CP</h2>
+
+<p><b>你的第一个任务是: </b> 从她的资料中去了解她,并且添加她的微信</p>
+<div class="form-group">
+    <label>姓名</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.name">
+</div>
+
+<div class="form-group">
+    <label>性别</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.gender">
+</div>
+<div class="form-group">
+    <label>年龄</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.age">
+</div>
+<div class="form-group">
+    <label>所在城市</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.city">
+</div>
+<div class="form-group">
+    <label>所在学校</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.school">
+</div>
+<div class="form-group">
+    <label>身高</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.height">
+</div>
+
+<div class="form-group">
+    <label>我的兴趣爱好</label>
+    <input type="text" class="form-control" ng-model="user.currentRecord.toPlayerId.name">
+</div>
+<div class="form-group" ng-repeat="tag in user.currentRecord.toPlayerId.tags">
+    <label>{{tag.tagName}}</label>
+    <span style="float:right;margin-right: 10px;"> {{tag.values.join(',')}}</span>
+</div>
+
+<div class="form-group" ng-repeat="anwser in user.currentRecord.toPlayerId.anwsers">
+    <label>{{anwser.question}}</label>
+    <span style="float:right;margin-right: 10px;"> {{anwser.value}}</span>
+</div>
+<div class="space" style="height: 50px;"></div>
+
+<div class="form-group">
+    <label>她的微信二维码</label>
+
+</div>
+<div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+        <img src="https://pic.kuaizhan.com/g1/M01/75/31/CgpQU1jJQpGAHVxlAAPSvGlhEao5750570/imageView/v1/thumbnail/640x0" alt="" class="img-responsive">
+    </div>
+</div>
+
+
+<div class="space" style="height: 50px;"></div>

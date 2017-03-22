@@ -1,146 +1,186 @@
 <button class="btn btn-block btn-lg" style="text-align: center;background: #fbb226 !important;color:#fff;">我的恋爱</button>
 
-<div style="height: 305px">
-    <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
-        <div uib-slide ng-repeat="slide in slides " index="$index">
-            <img ng-src="{{slide.image}}" class="img-responsive">
+
+<!--第一种状态. 未参加-->
+<div id="one" ng-if="user.currentRecord.state==0">
+    <div style="height: 305px">
+        <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides " index="$index">
+                <img ng-src="{{slide.image}}" class="img-responsive">
+            </div>
+        </div>
+        <h3 class="text-center"> Hi</h3>
+        <h3 class="text-center">世界那么大,我想遇见你</h3>
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-6 col-xs-offset-3">
+            <button ng-click="joinParty()" class="btn btn-block" style="background:#fdafc5;border-radius: 50px;color:#fff;font-weight: 600;">寻找我的恋人</button>
         </div>
     </div>
-    <h3 class="text-center"> Hi</h3>
-    <h3 class="text-center">世界那么大,我想遇见你</h3>
-</div>
-<div class="row" style="margin-bottom: 50px;">
-    <div class="col-xs-6 col-xs-offset-3">
-        <button class="btn btn-block" style="background:#fdafc5;border-radius: 50px;color:#fff;font-weight: 600;">寻找我的恋人</button>
+    <div class="hr"></div>
+    <div class="row text-center">
+        <h4>目前你已击败全国 </h4>
+        <h3 style="color:rgb(142, 222, 244);font-size: 16px;">30%情敌</h3>
+        <h4> 入选率偏低 </h4>
+        <h4>建议提高入选率</h4>
     </div>
 </div>
-<!--分界线-->
-<div style="width:100%;background-color:#EBEBEB;height: 80px;"></div>
-<div id="state1" class="container-fluid">
-    <h4> 小恋正在努力为你匹配中...</h4>
 
-    <p>匹配结果将于4月25日8:00开放查询，请置顶公众号及时查看匹配结果！
-    </p>
 
-</div>
-<!--轮播-->
-<div style="height: 305px">
-    <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
-        <div uib-slide ng-repeat="slide in slides2" index="$index">
-            <img ng-src="{{slide.image}}" class="img-responsive">
-        </div>
-    </div>
-    <div>
-        <span class="line"></span>
-        <h5 style="display: inline-block;"> 你与萌小萌匹配成为情侣，快去查看她的资料吧</h5>
-        <div class="row">
-            <div class="col-xs-4 col-xs-offset-4">
-                <img src="https://pic.kuaizhan.com/g2/M01/92/00/CgpQVFjM0DyAS3_dAAAQE9iEVUQ3109317/imageView/v1/thumbnail/240x180" class="img-responsive " style="width: 50px;height: 50px;border-radius: 50%;">
+
+<!--第二种状态,已经参加,处于匹配中  state=1 -->
+<div id="two" ng-if="user.currentRecord.state==1">
+    <!--分界线-->
+    <!--<div style="width:100%;background-color:#EBEBEB;height: 80px;"></div>-->
+    <!--轮播-->
+    <div style="height: 255px">
+        <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides2" index="$index">
+                <img ng-src="{{slide.image}}" class="img-responsive">
             </div>
         </div>
     </div>
-</div>
-
-<!--分界线-->
-<div style="width:100%;background-color:#EBEBEB;height: 40px;"></div>
-<div class="container-fluid block">
-    <div class="row text-center">你与萌小萌的匹配指数:</div>
-    <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-2">
-            <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+    <div id="state1" class="container-fluid">
+        <div>
+            <div class="line"></div>
+            <h5 style="display: inline-block;    font-weight: 600;"> 小恋正在努力为你匹配中...</h5>
         </div>
 
-        <div class="col-xs-2">
-            <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
-        </div>
-
-        <div class="col-xs-2">
-            <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
-        </div>
-
-        <div class="col-xs-2">
-            <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
-        </div>
-
-        <div class="col-xs-2">
-            <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
-        </div>
+        <p>匹配结果将于4月25日8:00开放查询，请置顶公众号及时查看匹配结果！
+        </p>
 
     </div>
+
 
 </div>
 
-<!--分界线,任务系统-->
-<div class="hr"></div>
-<div class="block"><span class="line"></span>
-    <h4 style="display: inline-block;margin-left: 30px;">七天恋爱第一天</h4>
-    <div class="row">
-        <p>人生若只如初见，只有微笑与期待，在这里，开启属于你们的故事！</p>
-    </div>
-    <div class="row">
-        <b>任务1:</b>
-        <p>向对方发一段走心的自我介绍，包括最近正在忙的一件事情！</p>
-    </div>
-    <div class="row">
-        <b>任务2:</b>
-        <p>给对方起个专属Ta的微信昵称！</p>
-    </div>
-    <div class="row">
-        <b>任务3:</b>
-        <p>睡觉前给对方讲一个笑话，并且互道晚安！</p>
-    </div>
 
-</div>
+<!--第三种状态 匹配成功-->
 
-<!--任务系统-->
-<div class="hr"></div>
-<div class="block">
-    <div><span class="line"></span>
-        <h4 style="display: inline-block">任务打开</h4> <button class="btn btn-default task-remind">任务示范</button></div>
-    <p style="display: inline-block">每天的任务早上8点发放，请在次日早上八点之前完成任务。</p>
-    <h4>完成任务后记得打卡，并将聊天记录截屏并上传完成打卡！</h4>
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3 "><button class="btn btn-block btn-lg" style="background: #fdafc5;border-radius: 50px;    color: #fff;"><i class="fa fa-toggle-on"></i> 点击上传任务</button>
+<div ng-if="user.currentRecord.state==2">
+    <!--分界线-->
+    <div style="width:100%;background-color:#EBEBEB;height: 40px;"></div>
+    <div class="container-fluid block">
+        <div class="row text-center">你与{{user.currentRecord.toPlayerId.name}}的匹配指数:</div>
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2">
+                <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+            </div>
+
+            <div class="col-xs-2">
+                <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+            </div>
+
+            <div class="col-xs-2">
+                <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+            </div>
+
+            <div class="col-xs-2">
+                <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+            </div>
+
+            <div class="col-xs-2">
+                <img src="https://pic.kuaizhan.com/g1/M01/A7/64/wKjmqVjOkLOAGqR9AAAB9KM7eqw755.png" alt="" class="img-responsive">
+            </div>
+
+        </div>
+
+    </div>
+    <!--轮播-->
+    <div style="height: 305px">
+        <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides2" index="$index">
+                <img ng-src="{{slide.image}}" class="img-responsive">
+            </div>
+        </div>
+        <div>
+            <span class="line"></span>
+            <h5 style="display: inline-block;"> 你与{{user.currentRecord.toPlayerId.name}}匹配成为情侣，快去查看她的资料吧</h5>
+            <div class="row">
+                <a href="#!/objectInfo/{{user.currentRecord.toPlayerId._id}}" class="col-xs-4 col-xs-offset-4" style="margin-left:calc(50% - 60px) !important;">
+                    <img src="https://pic.kuaizhan.com/g2/M01/92/00/CgpQVFjM0DyAS3_dAAAQE9iEVUQ3109317/imageView/v1/thumbnail/240x180" class="img-responsive " style="width: 50px;height: 50px;border-radius: 50%;margin-left: auto;margin-right: auto;">
+                </a>
+            </div>
         </div>
     </div>
-</div>
 
+    <!--分界线,任务系统-->
+    <div class="hr"></div>
+    <div class="block"><span class="line"></span>
+        <h4 style="display: inline-block;margin-left: 30px;">七天恋爱第一天</h4>
+        <div class="row">
+            <p>人生若只如初见，只有微笑与期待，在这里，开启属于你们的故事！</p>
+        </div>
+        <div class="row">
+            <b>任务1:</b>
+            <p>向对方发一段走心的自我介绍，包括最近正在忙的一件事情！</p>
+        </div>
+        <div class="row">
+            <b>任务2:</b>
+            <p>给对方起个专属Ta的微信昵称！</p>
+        </div>
+        <div class="row">
+            <b>任务3:</b>
+            <p>睡觉前给对方讲一个笑话，并且互道晚安！</p>
+        </div>
+
+    </div>
+
+    <!--任务系统-->
+    <div class="hr"></div>
+    <div class="block">
+        <div><span class="line"></span>
+            <h4 style="display: inline-block">任务打开</h4> <button class="btn btn-default task-remind">任务示范</button></div>
+        <p style="display: inline-block">每天的任务早上8点发放，请在次日早上八点之前完成任务。</p>
+        <h4>完成任务后记得打卡，并将聊天记录截屏并上传完成打卡！</h4>
+        <div class="row">
+            <div ng-click="selectFile()" class="col-xs-6 col-xs-offset-3 "><button class="btn btn-block btn-lg" style="background: #fdafc5;border-radius: 50px;    color: #fff;"><i class="fa fa-toggle-on"></i> 点击上传任务</button>
+            </div>
+            <!--隐藏的文本选择框-->
+            <input id="fileInput" type="file" ng-model="avatar" ng-change="viewAvatar(this)" hidden style="display: none">
+
+        </div>
+    </div>
+    <div class="hr"></div>
+
+</div>
 
 <!--分割线2 匹配失败-->
+<!--第四种状态 匹配失败-->
+<div id="four" ng-if="user.currentRecord.state==3">
+    <div class="row">
+        <img src="https://pic.kuaizhan.com/g2/M00/99/91/wKjmqljPrbyAB6VSAAADhIEa-vM295.png" alt="">
+    </div>
 
-<div class="row">
-    <img src="https://pic.kuaizhan.com/g2/M00/99/91/wKjmqljPrbyAB6VSAAADhIEa-vM295.png" alt="">
-</div>
 
-
-<!--匹配成功-->
-<div style="height: 305px">
-    <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
-        <div uib-slide ng-repeat="slide in slides2" index="$index">
-            <img ng-src="{{slide.image}}" class="img-responsive">
+    <!--匹配成功-->
+    <div style="height: 305px">
+        <div uib-carousel active="active" interval="3000" no-wrap="noWrapSlides">
+            <div uib-slide ng-repeat="slide in slides2" index="$index">
+                <img ng-src="{{slide.image}}" class="img-responsive">
+            </div>
         </div>
-    </div>
-    <div>
-        <span class="line"></span>
-        <h5 style="display: inline-block;">很抱歉,本次匹配失败,小恋已经尽力了~呜呜~</h5>
-    </div>
-    <p>由于本期活动人数超过预期 ,导致匹配失败,我们会在下一期继续为你匹配</p>
+        <div>
+            <span class="line"></span>
+            <h5 style="display: inline-block;">很抱歉,本次匹配失败,小恋已经尽力了~呜呜~</h5>
+        </div>
+        <p>由于本期活动人数超过预期 ,导致匹配失败,我们会在下一期继续为你匹配</p>
 
+
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-xs-offset-5" style="background: #fdafc5;border-radius: 600px;width: 60px;height:60px;">
+            <img src="https://pic.kuaizhan.com/g2/M00/99/91/wKjmqljPrbyAB6VSAAADhIEa-vM295.png" class="img-responsive" style="    width: 28px;margin-top: 20px;">
+        </div>
+
+
+    </div>
+    <div class="row">
+        <h5 class="text-center">继续为你匹配中</h5>
+    </div>
 
 </div>
-<div class="row">
-    <div class="col-xs-2 col-xs-offset-5" style="background: #fdafc5;border-radius: 600px;width: 60px;height:60px;">
-        <img src="https://pic.kuaizhan.com/g2/M00/99/91/wKjmqljPrbyAB6VSAAADhIEa-vM295.png" class="img-responsive" style="    width: 28px;margin-top: 20px;">
-    </div>
-
-
-</div>
-<div class="row">
-    <h5 class="text-center">继续为你匹配中</h5>
-</div>
-
-
 
 <!--导航栏-->
 
@@ -158,12 +198,13 @@
             </div>
         </div>
         <div class="col-xs-6 text-center">
-            <div class="row"><i class="fa fa-user"></i></div>
-            <div class="row">我的</div>
-
+            <a href="#!/my">
+                <div class="row"><i class="fa fa-user"></i></div>
+                <div class="row">我的</div>
+            </a>
         </div>
     </div>
 </div>
 
 
-<div class="hr hr-lg"></div>
+<!--<div class="hr hr-lg"></div>-->
